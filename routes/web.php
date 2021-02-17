@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\PublicPageController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('public-pages.welcome');
-});
 
+// public pages
+Route::get('/',[PublicPageController::class, 'welcome'] );
+Route::get('/about', [PublicPageController::class, 'about']);
+Route::get('/contact-us', [PublicPageController::class, 'contactUs']);
 
-// about
-Route::get('/about', function(){
-    return view('public-pages.about');
-});
+// contact us form
+Route::post('/contact-us', ContactUsController::class);
 
-
-// about
-Route::get('/contact-us', function(){
-    return view('public-pages.contact');
-});
+// users route
+Route::resource('/users', UserController::class)->only(['index','show']);
