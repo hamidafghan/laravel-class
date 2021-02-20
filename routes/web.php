@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\PublicPageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,6 @@ Route::get('/contact-us', [PublicPageController::class, 'contactUs']);
 
 // contact us form
 Route::post('/contact-us', ContactUsController::class);
-
+Route::get('/admin/contact-us', [AdminContactUsController::class, 'adminContactUsView']);
 // users route
 Route::resource('/users', UserController::class)->only(['index','show']);

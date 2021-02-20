@@ -9,7 +9,7 @@
 
     <p>Please leave your message</p>
     
-   <form action="{{ url('contact-us') }}" method="post">
+   <form action="{{ url('contact-us?name=hamid') }}" method="post">
    @csrf
         <div>
             <label for="">Email</label>
@@ -21,6 +21,12 @@
             <label for="">You message</label>
             <br>
             <textarea name="message" id="" cols="30" rows="10" class="border-2 border-gray-500"></textarea>
+        </div>
+
+        <div>
+            <label for="">Remember Me</label>
+            <br>
+            <input type="checkbox" name="remember">
         </div>
 
         <div>
