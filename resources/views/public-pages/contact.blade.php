@@ -8,9 +8,21 @@
     <p>This is the Contact page content.</p>
 
     <p>Please leave your message</p>
+
+    <img src="{{ asset('contact-files/57pdphF8Z8jVAWuy.png')}}" class="h-32 w-32">
     
-   <form action="{{ url('contact-us?name=hamid') }}" method="post">
-   @csrf
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+   <form action="{{ url('contact-us') }}" method="post" enctype="multipart/form-data">
+        @csrf
         <div>
             <label for="">Email</label>
             <br>
@@ -24,9 +36,15 @@
         </div>
 
         <div>
+            <label>Your attatchment</label>
+            <br>
+            <input type="file" name="image">
+        </div>
+
+        <div>
             <label for="">Remember Me</label>
             <br>
-            <input type="checkbox" name="remember">
+            <input type="checkbox" checked="checked" name="remember">
         </div>
 
         <div>
