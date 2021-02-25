@@ -9,18 +9,50 @@
 
     <p>Please leave your message</p>
     
-   <form action="{{ url('contact-us') }}" method="post">
-   @csrf
+   <form action="{{ url('contact-us') }}" method="post" enctype="multipart/form-data">
+        @csrf
         <div>
             <label for="">Email</label>
             <br>
-            <input type="text" name="email" class="border-2 border-gray-500">
+            <input type="text" value="{{@old('email')}}" name="email" class="border-2 border-gray-500">
         </div>
+        @error('email')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
+
+
+        <div>
+            <label for="">DoB</label>
+            <br>
+            <input type="text" value="{{@old('dob')}}" name="dob" class="border-2 border-gray-500">
+        </div>
+        @error('dob')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
+
 
         <div>
             <label for="">You message</label>
             <br>
-            <textarea name="message" id="" cols="30" rows="10" class="border-2 border-gray-500"></textarea>
+            <textarea name="message" id="" cols="30" rows="10" class="border-2 border-gray-500">{{@old('message')}}</textarea>
+        </div>
+        @error('message')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
+
+        <div>
+            <label>Your attatchment</label>
+            <br>
+            <input type="file" name="image">
+        </div>
+        @error('image')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
+
+        <div>
+            <label for="">Remember Me</label>
+            <br>
+            <input type="checkbox" checked="checked" name="remember">
         </div>
 
         <div>

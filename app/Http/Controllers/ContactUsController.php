@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Requests\ContactUsRequest;
 
 class ContactUsController extends Controller
 {
@@ -13,15 +15,14 @@ class ContactUsController extends Controller
      * @param $request
      * @return redirect
      */
-    public function __invoke(Request $request){
-       
-        // validations
-        // store the contact us requests in a table
-        // send the email to the admin (info@example.com)
-        // Notification 
-    
-        // redirect back to contact us 
+    public function __invoke(ContactUsRequest $request)
+    {
+        if($request->hasFile('image')){
+            $path = $request->image->store('contact-files', 'assets');
 
-        return $request->all();
+            return $path;
+        }
+
+        return 'No image or file';
     }
 }
