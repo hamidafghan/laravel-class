@@ -8,38 +8,46 @@
     <p>This is the Contact page content.</p>
 
     <p>Please leave your message</p>
-
-    <img src="{{ asset('contact-files/57pdphF8Z8jVAWuy.png')}}" class="h-32 w-32">
     
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
    <form action="{{ url('contact-us') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="">Email</label>
             <br>
-            <input type="text" name="email" class="border-2 border-gray-500">
+            <input type="text" value="{{@old('email')}}" name="email" class="border-2 border-gray-500">
         </div>
+        @error('email')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
+
+
+        <div>
+            <label for="">DoB</label>
+            <br>
+            <input type="text" value="{{@old('dob')}}" name="dob" class="border-2 border-gray-500">
+        </div>
+        @error('dob')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
+
 
         <div>
             <label for="">You message</label>
             <br>
-            <textarea name="message" id="" cols="30" rows="10" class="border-2 border-gray-500"></textarea>
+            <textarea name="message" id="" cols="30" rows="10" class="border-2 border-gray-500">{{@old('message')}}</textarea>
         </div>
+        @error('message')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
 
         <div>
             <label>Your attatchment</label>
             <br>
             <input type="file" name="image">
         </div>
+        @error('image')
+            <p class="text-red-500">{{ $message }}</p>
+        @enderror
 
         <div>
             <label for="">Remember Me</label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Requests\ContactUsRequest;
 
 class ContactUsController extends Controller
 {
@@ -14,11 +15,8 @@ class ContactUsController extends Controller
      * @param $request
      * @return redirect
      */
-    public function __invoke(Request $request)
+    public function __invoke(ContactUsRequest $request)
     {
-
-       
-
         if($request->hasFile('image')){
             $path = $request->image->store('contact-files', 'assets');
 
