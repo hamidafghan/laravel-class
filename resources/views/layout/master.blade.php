@@ -38,5 +38,7 @@
         <p class="text-center">This the general footer</p>
     </div>
 
+    @yield('page-level-js')
+
 </body>
 </html>

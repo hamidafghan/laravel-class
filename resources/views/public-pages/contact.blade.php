@@ -9,7 +9,7 @@
 
     <p>Please leave your message</p>
     
-   <form action="{{ url('contact-us') }}" method="post" enctype="multipart/form-data">
+   <form action="{{ url('contact-us') }}" method="post" enctype="multipart/form-data" id="contact-us-form">
         @csrf
         <div>
             <label for="">Email</label>
@@ -59,5 +59,15 @@
             <button type="submit" class="bg-blue-400 px-2 py-1 rounded-full text-white">Send your message </button>
         </div>
    </form>
+@stop
+
+@section('page-level-js')
+    <!-- Scripts -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Laravel Javascript Validation -->
+    <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\ContactUsRequest', '#contact-us-form') !!}
 
 @stop
