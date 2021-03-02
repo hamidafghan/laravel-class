@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class PublicPageController extends Controller
 {
     public function welcome() {
-        return view('public-pages.welcome');
+        $cards = \DB::table('cards')->get();
+
+        return view('public-pages.welcome', compact('cards'));
     }
 
     public function about(){
